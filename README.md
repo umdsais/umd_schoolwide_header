@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Provides a simple interface for adding the [UMD Schoolwide Header](https://umd-header.umd.edu/generator/) to Drupal 8 sites
+Provides a simple interface for adding the [UMD Schoolwide Header](https://github.com/UMD-Digital/elements-utility-header/tree/master) to Drupal sites
 in the University of Maryland system.
 
 This module was created by [idfive](http://idfive.com) for the University of Maryland.
@@ -18,14 +18,23 @@ information.
 
 This module can also be added to projects via composer, with something similar to the following (adjust release version as necessary):
 
-- `composer require umd_digital/umd_schoolwide_header --prefer-dist`
+- `composer require umd_digital/umd_schoolwide_header`
 - `drush en umd_schoolwide_header` or enable via admin UI
 
 ## Configuration
 
-- Add embed code to [the config page](/admin/config/umd_schoolwide_header/config).
-- This may be added with or without the script tags, the module will strip if needed.
-- A default is provided, so a default configuration will be loaded if left blank.
+- Make any desired adjustments on [the config page](/admin/config/umd_schoolwide_header/config).
+
+### Possible Adjustments
+
+- Hide Events link
+- Hide News link
+- Hide Colleges & Schools link
+- Hide Admissions link
+- Hide Make a Gift link
+- Override Make a gift link URL (Advanced)
+- Override default wrapper width (Advanced)
+- Override default padding (Advanced)
 
 ## Troubleshooting
 
