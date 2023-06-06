@@ -12,14 +12,14 @@ use Drupal\Core\Routing\RouteMatchInterface;
  *
  * @inheritdoc
  */
-function umd_schoolwide_header_help($route_name, RouteMatchInterface $route_match) {
+function umd_schoolwide_header_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     case 'help.page.umd_schoolwide_header':
       $text = file_get_contents(dirname(__FILE__) . "/README.md");
       if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
         return '<pre>' . $text . '</pre>';
-      }
-      else {
+      } else {
         // Use the Markdown filter to render the README.
         $filter_manager = \Drupal::service('plugin.manager.filter');
         $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
@@ -36,16 +36,22 @@ function umd_schoolwide_header_help($route_name, RouteMatchInterface $route_matc
  *
  * Adds js to the page.
  */
-function umd_schoolwide_header_preprocess_page(&$variables) {
+function umd_schoolwide_header_preprocess_page(&$variables)
+{
   $variables['#attached']['library'][] = 'umd_schoolwide_header/umd_header';
 }
 
-function umd_schoolwide_header_page_top(array &$page_top) {
-  $markup = umd_schoolwide_header_build_header();
-  $page_top['umd_schoolwide_header'] = [
-    '#type' => 'inline_template',
-    '#template' => $markup
-  ];
+function umd_schoolwide_header_page_top(array &$page_top)
+{
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  } else {
+    $markup = umd_schoolwide_header_build_header();
+    $page_top['umd_schoolwide_header'] = [
+      '#type' => 'inline_template',
+      '#template' => $markup
+    ];
+  }
 }
 
 /**
@@ -53,7 +59,8 @@ function umd_schoolwide_header_page_top(array &$page_top) {
  *
  * Builds HTML markup for header.
  */
-function umd_schoolwide_header_build_header() {
+function umd_schoolwide_header_build_header()
+{
   $umd_schoolwide_header_fields = \Drupal::config('umd_schoolwide_header.settings');
   // Get config fields, so we can modify markup accordingly.
   $hide_events = $umd_schoolwide_header_fields->get('umd_schoolwide_header.hide_events');
@@ -66,30 +73,30 @@ function umd_schoolwide_header_build_header() {
   $padding = $umd_schoolwide_header_fields->get('umd_schoolwide_header.padding');
 
   $markup = '<umd-utility-header search="domain"';
-  
+
   // Events
-  if($hide_events !== 1) {
+  if ($hide_events !== 1) {
     $markup .= ' events';
   }
 
   // News
-  if($hide_news !== 1) {
+  if ($hide_news !== 1) {
     $markup .= ' news';
   }
 
   // Colleges & Schools
-  if($hide_schools !== 1) {
+  if ($hide_schools !== 1) {
     $markup .= ' schools';
   }
 
   // Admissions
-  if($hide_admissions !== 1) {
+  if ($hide_admissions !== 1) {
     $markup .= ' admissions';
   }
 
   // Giving
-  if($hide_giving !== 1) {
-    if(!empty($giving_url)) {
+  if ($hide_giving !== 1) {
+    if (!empty($giving_url)) {
       $markup .= ' gift="' . $giving_url . '"';
     } else {
       $markup .= ' gift';
@@ -97,20 +104,20 @@ function umd_schoolwide_header_build_header() {
   }
 
   // Wrapper Width
-  if(!empty($wrapper_width)) {
+  if (!empty($wrapper_width)) {
     $markup .= ' size="' . $wrapper_width . 'px"';
   } else {
     $markup .= ' size="1300px"';
   }
 
   // Padding
-  if(!empty($padding)) {
+  if (!empty($padding)) {
     $markup .= ' padding="' . $padding . '"';
   } else {
     $markup .= ' padding="20"';
   }
 
-  $markup .=  '></umd-utility-header>';
+  $markup .= '></umd-utility-header>';
 
   return $markup;
 }

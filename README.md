@@ -40,3 +40,7 @@ This module can also be added to projects via composer, with something similar t
 
 - Check for JS errors in console, and be sure to clear site caches.
 - Check for CSS conflicts with your theme.
+
+## Development
+
+- `npm update`, to get a newer version of the UMD Header JS package.
