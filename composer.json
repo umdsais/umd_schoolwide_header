@@ -4,7 +4,7 @@
     "description": "Provides a simple interface for adding the UMD Schoolwide Header to Drupal 8 sites in the University of Maryland system.",
     "keywords": ["Drupal"],
     "license": "GPL-2.0+",
-    "homepage": "https://github.com/UMD-Digital/umd_schoolwide_header/",
+    "homepage": "https://github.com/umdsais/umd_schoolwide_header/",
     "minimum-stability": "dev",
     "authors": [
       {
@@ -19,7 +19,7 @@
       }
     ],
     "support": {
-      "issues": "https://github.com/UMD-Digital/umd_schoolwide_header/issues",
-      "source": "https://github.com/UMD-Digital/umd_schoolwide_header/"
+      "issues": "https://github.com/umdsais/umd_schoolwide_header/issues",
+      "source": "https://github.com/umdsais/umd_schoolwide_header/"
     }
   }

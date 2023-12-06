@@ -5,3 +5,4 @@ configure: umd_header.config
 package: UMD.EDU
 core: '8.x'
 core_version_requirement: ^8 || ^9 || ^10
+version: 8.1.8
