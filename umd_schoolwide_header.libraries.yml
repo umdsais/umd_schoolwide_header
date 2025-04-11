@@ -1,6 +1,9 @@
 umd_header:
-  version: 1.x
+  version: 2.x
   js:
-    https://umd-header.umd.edu/build/bundle.js?search=0&events=0&news=0&schools=0&admissions=0&support=0&support_url=&wrapper=1100&sticky=0: { type: external, preprocess: false }
+    node_modules/@universityofmaryland/utilityheader/dist/index.js: { 
+      preprocess: false,
+      attributes: { type : "module" }
+      }
   dependencies:
     - core/drupalSettings
