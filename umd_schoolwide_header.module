@@ -106,9 +106,9 @@ function umd_schoolwide_header_build_header()
 
   // Giving
   if ($hide_giving !== 1) {
-    $markup .= ' data-giving="true"';
+    $markup .= ' data-gift="true"';
   } else {
-    $markup .= ' data-giving="false"';
+    $markup .= ' data-gift="false"';
   }
 
   // Search
