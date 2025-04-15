@@ -84,29 +84,21 @@ function umd_schoolwide_header_build_header()
   // Events
   if ($hide_events !== 1) {
     $markup .= ' data-events="true"';
-  } else {
-    $markup .= ' data-events="false"';
   }
 
   // News
   if ($hide_news !== 1) {
     $markup .= ' data-news="true"';
-  } else {
-    $markup .= ' data-news="false"';
   }
 
   // Admissions
   if ($hide_admissions !== 1) {
     $markup .= ' data-admissions="true"';
-  } else {
-    $markup .= ' data-admissions="false"';
   }
 
   // Giving
   if ($hide_giving !== 1) {
     $markup .= ' data-gift="true"';
-  } else {
-    $markup .= ' data-gift="false"';
   }
 
   // Search
