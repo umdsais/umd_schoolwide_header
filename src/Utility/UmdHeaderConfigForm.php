@@ -23,6 +23,20 @@ class UmdHeaderConfigForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
     $config = $this->config('umd_schoolwide_header.settings');
+
+    $theme_config = \Drupal::config('system.theme');
+    $default_theme = $theme_config->get('default');
+
+    if($default_theme !== 'umd_terp') {
+      $form['theme_help_text'] = [
+        '#markup' => '<p>You are <strong>NOT</strong> using the <strong>UMD Terp Theme</strong>, so the UMD Brand design system JS files will be loaded, as they are needed to run the schoolwide header.</p>',
+      ];
+    } else {
+      $form['theme_help_text'] = [
+        '#markup' => '<p>You are using the <strong>UMD Terp Theme</strong>, so the UMD Brand design system JS files will not be loaded, as they are included in the UMD Terp Theme.</p>',
+      ];
+    }
+
     $form['help_text'] = [
       '#markup' => '<p>These setting correspond to the <a href="https://brand.umd.edu/website-guidelines/university-header-guidelines">UMD Brand Guidelines</a>.</p>',
     ];
@@ -48,13 +62,6 @@ class UmdHeaderConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('umd_schoolwide_header.hide_news'),
     ];
 
-    // Colleges & Schools
-    $form['umd_schoolwide_header_settings']['hide_schools'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Hide the Colleges & Schools link'),
-      '#default_value' => $config->get('umd_schoolwide_header.hide_schools'),
-    ];
-
     // Admissions
     $form['umd_schoolwide_header_settings']['hide_admissions'] = [
       '#type' => 'checkbox',
@@ -69,35 +76,17 @@ class UmdHeaderConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('umd_schoolwide_header.hide_giving'),
     ];
 
-
     // Advanced
     $form['umd_schoolwide_header_settings']['advanced'] = [
       '#type' => 'details',
       '#title' => t('Advanced'),
     ];
 
-    // Giving URL 
-    $form['umd_schoolwide_header_settings']['advanced']['giving_url'] = [
-      '#type' => 'textfield',
-      '#title' => t('Make a Gift URL Override'),
-      '#default_value' => $config->get('umd_schoolwide_header.giving_url'),
-      '#description' => t('By default, the URL for the Make a Gift  link will be to giving.umd.edu. If you wish to override that for this instance, you may enter a full URL here to the desired page, such as: https://giving.umd.edu/giving/showSchool.php?name=business '),
-    ];
-
-    // Wrapper Width
-    $form['umd_schoolwide_header_settings']['advanced']['wrapper_width'] = [
-      '#type' => 'textfield',
-      '#title' => t('Wrapper width of the schoolwide header'),
-      '#default_value' => $config->get('umd_schoolwide_header.wrapper_width'),
-      '#description' => t('This will default to 1300 pixels if not overridden. To override, enter the number of pixels desired.'),
-    ];
-
-    // Padding
-    $form['umd_schoolwide_header_settings']['advanced']['padding'] = [
-      '#type' => 'textfield',
-      '#title' => t('Padding of the schoolwide header'),
-      '#default_value' => $config->get('umd_schoolwide_header.padding'),
-      '#description' => t('This will default to 20 pixels if not overridden. To override, enter the number of pixels desired.'),
+    // Search
+    $form['umd_schoolwide_header_settings']['advanced']['hide_search'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Hide the Search Box'),
+      '#default_value' => $config->get('umd_schoolwide_header.hide_search'),
     ];
 
     // Depreciated
@@ -106,7 +95,7 @@ class UmdHeaderConfigForm extends ConfigFormBase {
       '#title' => t('Depreciated'),
     ];
 
-    // URL of the API.
+    // URL of the old Depreciated API.
     $form['umd_schoolwide_header_settings']['depreciated']['embed'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Old Generator Snippet'),
@@ -126,12 +115,9 @@ class UmdHeaderConfigForm extends ConfigFormBase {
     $config = $this->config('umd_schoolwide_header.settings');
     $config->set('umd_schoolwide_header.hide_events', $form_state->getValue('hide_events'));
     $config->set('umd_schoolwide_header.hide_news', $form_state->getValue('hide_news'));
-    $config->set('umd_schoolwide_header.hide_schools', $form_state->getValue('hide_schools'));
+    $config->set('umd_schoolwide_header.hide_search', $form_state->getValue('hide_search'));
     $config->set('umd_schoolwide_header.hide_admissions', $form_state->getValue('hide_admissions'));
     $config->set('umd_schoolwide_header.hide_giving', $form_state->getValue('hide_giving'));
-    $config->set('umd_schoolwide_header.giving_url', $form_state->getValue('giving_url'));
-    $config->set('umd_schoolwide_header.wrapper_width', $form_state->getValue('wrapper_width'));
-    $config->set('umd_schoolwide_header.padding', $form_state->getValue('padding'));
     $config->set('umd_schoolwide_header.embed', $form_state->getValue('embed'));
     $config->save();
     return parent::submitForm($form, $form_state);

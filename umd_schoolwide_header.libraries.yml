@@ -1,9 +1,10 @@
 umd_header:
   version: 2.x
   js:
-    node_modules/@universityofmaryland/utilityheader/dist/index.js: { 
+    umd_brand_static/public/js/bundle.js: {
+      minified: true,
       preprocess: false,
-      attributes: { type : "module" }
+      attributes: { type: "module" }
       }
   dependencies:
     - core/drupalSettings

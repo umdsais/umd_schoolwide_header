@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="{{ htmlClass }}" lang="en">
+  <head>
+    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {# Begin Google Font Example #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap" rel="stylesheet">
+
+    {# Main Screen and Print Stylesheets #}
+    <link rel="stylesheet" href="../../css/style.css?{{ cacheBuster }}" media="screen">
+    <link
+    rel="stylesheet" href="../../css/print.css?{{ cacheBuster }}" media="print">
+
+    {# Pattern Lab Interface Styles #}
+    <link rel="stylesheet" href="../../css/pattern-scaffolding.css?{{ cacheBuster }}" media="all">
+
+    <script src="../../js/bundle.js" type="module"></script>
+
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    {{ patternLabHead | raw }}
+    <!-- End Pattern Lab -->
+
+  </head>
+  <body>

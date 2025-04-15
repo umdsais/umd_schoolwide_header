@@ -1,0 +1,52 @@
+{
+  "name": "pattern-lab-test",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "patternlab build --config ./patternlab-config.json",
+    "build:uikit": "cross-env-shell PL_CONFIG_PATH='${INIT_CWD}/.patternlabrc.js' npm run build --prefix node_modules/@pattern-lab/uikit-workshop -- --patternlabrc '$PL_CONFIG_PATH'",
+    "dev": "node ./node_modules/@pattern-lab/uikit-workshop/build-tools.js",
+    "help": "patternlab --help",
+    "install": "patternlab install --config ./patternlab-config.json",
+    "serve": "patternlab serve --config ./patternlab-config.json",
+    "start": "npm run serve",
+    "version": "patternlab --version",
+    "watch:sass": "sass --watch ./source/scss/index.scss:public/css/style.css ./source/scss/print.scss:public/css/print.css --source-map",
+    "watch:ts": "npx tsc -w",
+    "compile:ts": "esbuild ./source/js/main.ts --bundle --outfile=./public/js/bundle.js --format=esm --watch",
+    "develop": "concurrently \"npm run start\" \"npm run watch:sass\" \"npm run compile:ts\"",
+    "build:css": "sass ./source/scss/index.scss:public/css/style.css ./source/scss/print.scss:public/css/print.css && minify public/css/style.css > public/css/style.min.css && minify public/css/print.css > public/css/print.min.css",
+    "build:ts": "esbuild ./source/js/main.ts --bundle --outfile=./public/js/bundle.js --format=esm && terser public/js/bundle.js -c -m --comments /^!/ --format ascii_only=true,beautify=false,preserve_annotations=false -o public/js/bundle.min.js",
+    "build:all": "concurrently \"npm run build:ts\" \"npm run build:css\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@parcel/watcher": "^2.5.1",
+    "@pattern-lab/cli": "^6.1.0",
+    "@pattern-lab/core": "^6.1.0",
+    "@pattern-lab/engine-twig-php": "^6.0.1",
+    "@pattern-lab/uikit-workshop": "^6.1.0",
+    "@types/postcss-js": "^4.0.4",
+    "@universityofmaryland/web-components-library": "^1.9.10",
+    "@universityofmaryland/web-elements-library": "^1.2.0",
+    "@universityofmaryland/web-styles-library": "^1.1.1",
+    "esbuild": "^0.25.2",
+    "install": "^0.13.0",
+    "npm": "^11.3.0",
+    "postcss-js": "^4.0.1",
+    "tw-to-css": "0.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "concurrently": "^9.1.2",
+    "minify": "^14.0.0",
+    "sass": "^1.86.0",
+    "terser": "^5.39.0",
+    "typescript": "^5.8.2"
+  }
+}
