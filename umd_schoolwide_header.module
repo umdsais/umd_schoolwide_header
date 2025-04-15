@@ -47,8 +47,6 @@ function umd_schoolwide_header_preprocess_page(&$variables)
   } else {
     if($default_theme !== 'umd_terp') {
       $variables['#attached']['library'][] = 'umd_schoolwide_header/umd_header';
-    } else {
-      dsm('not loaded');
     }
   }
 }
