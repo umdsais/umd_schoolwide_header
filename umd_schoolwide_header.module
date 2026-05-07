@@ -79,6 +79,7 @@ function umd_schoolwide_header_build_header()
   $hide_news = $umd_schoolwide_header_fields->get('umd_schoolwide_header.hide_news');
   $hide_admissions = $umd_schoolwide_header_fields->get('umd_schoolwide_header.hide_admissions');
   $hide_giving = $umd_schoolwide_header_fields->get('umd_schoolwide_header.hide_giving');
+  $hide_schools = $umd_schoolwide_header_fields->get('umd_schoolwide_header.hide_schools');
   $hide_search = $umd_schoolwide_header_fields->get('umd_schoolwide_header.hide_search');
 
   $markup = '<umd-element-navigation-utility';
@@ -101,6 +102,11 @@ function umd_schoolwide_header_build_header()
   // Giving
   if ($hide_giving !== 1) {
     $markup .= ' data-gift="true"';
+  }
+
+  // Colleges & Schools
+  if ($hide_schools !== 1) {
+    $markup .= ' data-schools="true"';
   }
 
   // Search

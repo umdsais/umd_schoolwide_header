@@ -1,0 +1,29 @@
+umd_schoolwide_header.settings:
+  type: config_object
+  label: 'UMD Schoolwide Header settings'
+  mapping:
+    umd_schoolwide_header:
+      type: mapping
+      label: 'Header settings'
+      mapping:
+        hide_events:
+          type: boolean
+          label: 'Hide the Events link'
+        hide_news:
+          type: boolean
+          label: 'Hide the News link'
+        hide_admissions:
+          type: boolean
+          label: 'Hide the Admissions link'
+        hide_giving:
+          type: boolean
+          label: 'Hide the Make a Gift link'
+        hide_schools:
+          type: boolean
+          label: 'Hide the Colleges & Schools link'
+        hide_search:
+          type: boolean
+          label: 'Hide the Search Box'
+        embed:
+          type: text
+          label: 'Old Generator Snippet'

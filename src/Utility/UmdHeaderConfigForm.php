@@ -76,6 +76,13 @@ class UmdHeaderConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('umd_schoolwide_header.hide_giving'),
     ];
 
+    // Colleges & Schools
+    $form['umd_schoolwide_header_settings']['hide_schools'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Hide the Colleges & Schools link'),
+      '#default_value' => $config->get('umd_schoolwide_header.hide_schools'),
+    ];
+
     // Advanced
     $form['umd_schoolwide_header_settings']['advanced'] = [
       '#type' => 'details',
@@ -118,6 +125,7 @@ class UmdHeaderConfigForm extends ConfigFormBase {
     $config->set('umd_schoolwide_header.hide_search', $form_state->getValue('hide_search'));
     $config->set('umd_schoolwide_header.hide_admissions', $form_state->getValue('hide_admissions'));
     $config->set('umd_schoolwide_header.hide_giving', $form_state->getValue('hide_giving'));
+    $config->set('umd_schoolwide_header.hide_schools', $form_state->getValue('hide_schools'));
     $config->set('umd_schoolwide_header.embed', $form_state->getValue('embed'));
     $config->save();
     return parent::submitForm($form, $form_state);
