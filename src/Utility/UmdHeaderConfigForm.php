@@ -96,10 +96,10 @@ class UmdHeaderConfigForm extends ConfigFormBase {
       '#default_value' => $config->get('umd_schoolwide_header.hide_search'),
     ];
 
-    // Depreciated
+    // Deprecated
     $form['umd_schoolwide_header_settings']['depreciated'] = [
       '#type' => 'details',
-      '#title' => t('Depreciated'),
+      '#title' => t('Deprecated'),
     ];
 
     // URL of the old Depreciated API.

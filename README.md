@@ -53,7 +53,7 @@ This module has been coded to attach the full UMD design library to themes other
 
 ### Update UMD Design System
 
-Any site that uses the `umd_trerp` theme, will load its own JS via that theme, and thus not use the file here. This file is only for custom themes, or other use cases, that need the UMD Design system loaded.
+Any site that uses the `umd_terp` theme, will load its own JS via that theme, and thus not use the file here. This file is only for custom themes, or other use cases, that need the UMD Design system loaded.
 
 - `cd umd_brand_static`
 - `nvm use`, to standardize NPM in use.

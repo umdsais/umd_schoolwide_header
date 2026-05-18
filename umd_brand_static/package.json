@@ -19,7 +19,7 @@
     "compile:ts": "esbuild ./source/js/main.ts --bundle --outfile=./public/js/bundle.js --format=esm --watch",
     "develop": "concurrently \"npm run start\" \"npm run watch:sass\" \"npm run compile:ts\"",
     "build:css": "sass ./source/scss/index.scss:public/css/style.css ./source/scss/print.scss:public/css/print.css && minify public/css/style.css > public/css/style.min.css && minify public/css/print.css > public/css/print.min.css",
-    "build:ts": "esbuild ./source/js/main.ts --bundle --outfile=./public/js/bundle.js --format=esm && terser public/js/bundle.js -c -m --comments /^!/ --format ascii_only=true,beautify=false,preserve_annotations=false -o public/js/bundle.min.js",
+    "build:ts": "esbuild ./source/js/main.ts --bundle --outfile=./public/js/bundle.js --format=esm",
     "build:all": "concurrently \"npm run build:ts\" \"npm run build:css\""
   },
   "keywords": [],

@@ -4,4 +4,4 @@ description: 'Provides an easy way to include the University of Maryland Schoolw
 configure: umd_header.config
 package: UMD.EDU
 core_version_requirement: ^11
-version: 11.6.2
+version: 11.6.3

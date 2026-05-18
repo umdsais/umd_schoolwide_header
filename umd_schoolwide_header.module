@@ -42,11 +42,11 @@ function umd_schoolwide_header_preprocess_page(&$variables)
   $default_theme = $config->get('default');
   $core_greater_than_11 = version_compare(\Drupal::VERSION, '11.0', '>=');
 
-  // Only load library on FE pages, as well as not load if umd_terp theme in use, whuich already loads this lib.
+  // Only load library on FE pages, as well as not load if umd_terp theme in use, which already loads this lib.
   if (\Drupal::service('router.admin_context')->isAdminRoute()) {
     return;
   } else {
-    // For themnes other than umd_terp, or versions of umd_terp for less than core v 11.0, add UMD library
+    // For themes other than umd_terp, or versions of umd_terp for less than core v 11.0, add UMD library
     if($default_theme !== 'umd_terp' || $core_greater_than_11 == FALSE) {
       $variables['#attached']['library'][] = 'umd_schoolwide_header/umd_header';
     }
@@ -61,7 +61,10 @@ function umd_schoolwide_header_page_top(array &$page_top)
     $markup = umd_schoolwide_header_build_header();
     $page_top['umd_schoolwide_header'] = [
       '#type' => 'inline_template',
-      '#template' => $markup
+      '#template' => $markup,
+      '#cache' => [
+        'tags' => ['config:umd_schoolwide_header.settings'],
+      ],
     ];
   }
 }
@@ -84,35 +87,12 @@ function umd_schoolwide_header_build_header()
 
   $markup = '<umd-element-navigation-utility';
 
-  // Events
-  if ($hide_events !== 1) {
-    $markup .= ' data-events="true"';
-  }
-
-  // News
-  if ($hide_news !== 1) {
-    $markup .= ' data-news="true"';
-  }
-
-  // Admissions
-  if ($hide_admissions !== 1) {
-    $markup .= ' data-admissions="true"';
-  }
-
-  // Giving
-  if ($hide_giving !== 1) {
-    $markup .= ' data-gift="true"';
-  }
-
-  // Colleges & Schools
-  if ($hide_schools !== 1) {
-    $markup .= ' data-schools="true"';
-  }
-
-  // Search
-  if ($hide_search !== 1) {
-    $markup .= ' data-search="true"';
-  } 
+  $markup .= ' data-events="' . ($hide_events ? 'false' : 'true') . '"';
+  $markup .= ' data-news="' . ($hide_news ? 'false' : 'true') . '"';
+  $markup .= ' data-admissions="' . ($hide_admissions ? 'false' : 'true') . '"';
+  $markup .= ' data-gift="' . ($hide_giving ? 'false' : 'true') . '"';
+  $markup .= ' data-schools="' . ($hide_schools ? 'false' : 'true') . '"';
+  $markup .= ' data-search="' . ($hide_search ? 'false' : 'true') . '"';
 
   // Standardized components
   $markup .= ' data-alert-url="https://umd-main.production.servd.dev/api/v2"';

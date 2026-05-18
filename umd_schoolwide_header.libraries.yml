@@ -1,5 +1,5 @@
 umd_header:
-  version: 11.6.0
+  version: 11.6.3
   js:
     umd_brand_static/public/js/bundle.js: {
       minified: true,
