@@ -38,7 +38,7 @@ function umd_schoolwide_header_help($route_name, RouteMatchInterface $route_matc
  */
 function umd_schoolwide_header_preprocess_page(&$variables)
 {
-  $config = \Drupal::config('system.theme');   
+  $config = \Drupal::config('system.theme');
   $default_theme = $config->get('default');
   $core_greater_than_11 = version_compare(\Drupal::VERSION, '11.0', '>=');
 
@@ -47,7 +47,10 @@ function umd_schoolwide_header_preprocess_page(&$variables)
     return;
   } else {
     // For themes other than umd_terp, or versions of umd_terp for less than core v 11.0, add UMD library
-    if($default_theme !== 'umd_terp' || $core_greater_than_11 == FALSE) {
+    $base_themes = array_keys(\Drupal::service('theme.manager')->getActiveTheme()->getBaseThemeExtensions());
+    $uses_umd_terp = $default_theme === 'umd_terp' || in_array('umd_terp', $base_themes);
+
+    if (!$uses_umd_terp || $core_greater_than_11 == FALSE) {
       $variables['#attached']['library'][] = 'umd_schoolwide_header/umd_header';
     }
   }
